@@ -1,0 +1,16 @@
+# Generated articles and HTML
+output/
+
+# Config with personal credentials
+config.yaml
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
