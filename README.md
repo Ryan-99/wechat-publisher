@@ -88,7 +88,6 @@ wechat-publisher/
 │   ├── theme.py             # 主题系统
 │   ├── publisher.py         # 微信草稿发布
 │   ├── wechat_api.py        # 微信 API 封装
-│   ├── image_gen.py         # AI 图片生成（多 provider）
 │   └── themes/              # 16 种排版主题
 │       ├── professional-clean.yaml
 │       ├── midnight.yaml
@@ -198,6 +197,17 @@ python3 cli.py gallery
 - `history.yaml` — 发布历史（每篇文章的元数据和写作参数）
 
 这些文件已被 `.gitignore` 排除，不会上传到 GitHub。
+
+## 致谢
+
+本项目基于 [baoyu](https://github.com/anthropics) 老师的 Claude Code Skills 系列及 WeWrite 项目修改而来，感谢大佬的开源贡献：
+
+- **baoyu-imagine** — AI 图片生成 Skill
+- **baoyu-post-to-wechat** — 微信公众号发布 Skill
+- **baoyu-article-illustrator** — 文章配图 Skill
+- **WeWrite** — 微信公众号内容全流程助手
+
+本仓库将这些 Skill 整合为单一自包含包，并将图片生成改为浏览器即梦、发布改为 Playwright MCP 浏览器自动化，去除对外部 Skill 的运行时依赖。
 
 ## 许可
 
