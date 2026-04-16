@@ -131,10 +131,24 @@ AI 提示词："{英文，含风格+构图+色调+光影，16:9 aspect ratio, no
 
 ## 三、执行
 
-封面和配图的提示词写好后，通过浏览器打开即梦生成图片：
+提示词写好后，按优先级生成图片：
+
+**主方案：API 调用**（快速、可批量、无需浏览器）
+
+```bash
+# 封面（2.35:1 比例）
+python3 {dir}/toolkit/image_gen.py --prompt "{英文提示词}" --output {dir}/output/cover.png --size cover
+
+# 配图（16:9 比例）
+python3 {dir}/toolkit/image_gen.py --prompt "{英文提示词}" --output {dir}/output/illust-{N}.png --size article
+```
+
+支持 9 个 provider，多 provider 自动降级。需在 `config.yaml` 配置 API key。
+
+**降级：浏览器即梦**（免费、无需 API key）
 
 1. `browser_navigate` → `https://jimeng.jianying.com`
 2. 在即梦输入框输入提示词，选择合适比例（封面 2.35:1，配图 16:9）
 3. 等待生成完成，下载图片到 `{dir}/output/` 目录
 
-生成失败时重试 1 次。全部失败 → 输出提示词到文件，继续流程。
+**再降级**：输出提示词到文件，继续流程。

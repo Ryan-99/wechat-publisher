@@ -88,6 +88,7 @@ wechat-publisher/
 │   ├── theme.py             # 主题系统
 │   ├── publisher.py         # 微信草稿发布
 │   ├── wechat_api.py        # 微信 API 封装
+│   ├── image_gen.py         # AI 图片生成（9 个 provider，多 provider 降级）
 │   └── themes/              # 16 种排版主题
 │       ├── professional-clean.yaml
 │       ├── midnight.yaml
@@ -163,11 +164,24 @@ python3 cli.py gallery
 
 ### 图片生成
 
-通过 Playwright MCP 浏览器自动化操作 [即梦](https://jimeng.jianying.com)（字节跳动 AI 图片生成工具）生成图片，不需要 API key。
+**主方案：API 调用**（`toolkit/image_gen.py`），支持 9 个 AI 图片生成 provider：
+
+doubao · openai · gemini · dashscope · minimax · replicate · azure_openai · openrouter · jimeng
+
+多 provider 自动降级——配一个就跑，配多个更稳。在 `config.yaml` 中配置 API key 即可：
+
+```yaml
+image:
+  providers:
+    - provider: gemini
+      api_key: YOUR_KEY
+```
 
 - 封面图：2.35:1 比例（公众号封面）
 - 文章配图：16:9 比例
 - 视觉锚点：封面确认后提取色板 + 风格关键词，后续配图保持视觉统一
+
+**降级：浏览器即梦**（免费，不需要 API key，通过 Playwright MCP 自动操作）
 
 ### 发布
 
